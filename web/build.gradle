@@ -28,6 +28,13 @@ jar {
     destinationDir = new File("$buildDir/libs/web")
 }
 
+test {
+    if (System.getProperty('DEBUG', 'false') == 'true') {
+        jvmArgs '-Xdebug',
+                '-Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=9995'
+    }
+}
+
 dependencies {
     compile project(':core')
     compile group: 'javax.servlet', name: 'javax.servlet-api', version: '3.0.1'
